@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/auth/**, /api/users/**
+          filters:
+            - name: AuthFilter
+              args:
+                skipPaths: /api/auth/login,/api/auth/register
+
+        - id: event-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/events/**, /api/uploads/**
+          filters:
+            - name: AuthFilter
+
+        - id: ticket-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/tickets/**
+          filters:
+            - name: AuthFilter
+
+        - id: notification-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/notifications/**
+          filters:
+            - name: AuthFilter
+
+        - id: payment-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/payments/**
+          filters:
+            - name: AuthFilter
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods: GET,POST,PUT,DELETE,OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+
+jwt:
+  secret: "EventHub2024SecretKeyForJWTTokenGenerationAndValidation"
+  expiration: 86400000
+
+logging:
+  level:
+    com.example.gateway: DEBUG

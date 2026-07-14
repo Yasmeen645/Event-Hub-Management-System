@@ -1,0 +1,19 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: ticket-service
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=eventHub_tickets_test;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: 123456
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.SQLServerDialect
+
+services:
+  event-service: http://localhost:8082
+  payment-service: http://localhost:8085
