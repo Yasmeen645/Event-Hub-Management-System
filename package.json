@@ -1,0 +1,36 @@
+{
+  "name": "event-hub-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^3.0.0",
+    "ajv": "^8.20.0",
+    "axios": "^1.6.0",
+    "date-fns": "^3.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.0",
+    "react-scripts": "^5.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts build"
+  },
+ 
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead"
+    ],
+    "development": [
+      "last 1 chrome version"
+    ]
+  }
+}
